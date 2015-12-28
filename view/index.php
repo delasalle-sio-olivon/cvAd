@@ -1,5 +1,5 @@
 
-<script type="text/javascript" src="js/JQuery.js"></script>
+<script type="text/javascript" src="js/jQuery.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
