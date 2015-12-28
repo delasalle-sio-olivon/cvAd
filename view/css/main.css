@@ -1,0 +1,41 @@
+html , body{
+	margin : 0px;
+	background : #E27A3F;
+	
+}
+#main, #cv, #pres{
+	float : left;
+	height : 100%;
+}
+#main{
+	background-color : #334D5C;
+}
+#cv{
+	background-color : #45B29D;
+}
+#pres{
+	background-color : #EFC94C;
+}
+.hmain{
+	color : #45B29D;
+	padding-left : 7px;
+}
+.hcv{
+	color : #EFC94C;
+	padding-left : 7px;
+}
+h2{
+	float : left;
+}
+#glyph{
+	float: left;
+	margin-right : 5px;
+}
+.list-group{
+	margin-top : 50px;
+}
+ul{
+	float : left;
+	list-style-type: none; 
+}
+li{margin-bottom : 15px;}
