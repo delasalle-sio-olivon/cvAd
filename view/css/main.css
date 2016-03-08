@@ -1,20 +1,26 @@
 html , body{
 	margin : 0px;
+	padding : 0px;
 	background : #E27A3F;
-	
+	width : 100%;
+	height : 100%;
 }
 #main, #cv, #pres{
 	float : left;
 	height : 100%;
+	transition : all 1s;
 }
 #main{
 	background-color : #334D5C;
+	width : 59%;
 }
 #cv{
 	background-color : #45B29D;
+	width : 19%;
 }
 #pres{
 	background-color : #EFC94C;
+	width : 19%;
 }
 .hmain{
 	color : #45B29D;
@@ -39,3 +45,9 @@ ul{
 	list-style-type: none; 
 }
 li{margin-bottom : 15px;}
+.show{
+	width : 59% !important; 
+}
+.cacher{
+	width : 19% !important;
+}

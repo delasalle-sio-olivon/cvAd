@@ -4,6 +4,7 @@ var percentOthers = ((100 - percentFocus) / 2 ) - 1;
 percentFocus -= 1;
 percentFocus += ''+ '%';
 percentOthers += ''+ '%';
+/*
 function show(div){
 	var main = $('#main');
 	var cv = $('#cv');
@@ -44,7 +45,7 @@ function show(div){
 	if(w != percentFocus){
 		$('.show').animate({"width": percentFocus }, speed);
 	}
-	
+	$('#main').trigger('changeClass');
 }
 
 
@@ -70,6 +71,6 @@ $(document).ready(function(){
 		show("pres");
 	});
 	
-	
+		
 });
-
+*/

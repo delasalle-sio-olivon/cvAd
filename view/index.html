@@ -1,6 +1,5 @@
+<html>
 
-<script type="text/javascript" src="js/jQuery.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -9,14 +8,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/main.css" type="text/css" media="screen"/> 
 
-<div id="main" class="pf">
-	<h1 class="hmain">Adrien Olivon</h1>
+<link rel="stylesheet" href="css/main.css" type="text/css" media="screen"/> 
+<body ng-app="appMod">
+<div id="main" class="pf {{classMain}}" ng-controller="mainCtrl" ng-click="changeClass()" >
 </div>
 
-<div id="cv" class="po">
+<div id="cv" class="po {{classCv}}" ng-controller="cvCtrl" ng-click="changeClass()">
 	<h1 class="hcv">CV</h1>
 	<div class="container">
 		<div id="formation">
@@ -104,4 +102,72 @@
 	</div>
 </div>
 
-<div id="pres" class="po"></div>
+<div id="pres" class="po {{classPres}}" ng-controller="presCtrl"  ng-click="changeClass()"></div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript">
+
+var app = angular.module('appMod', []);
+
+app.directive('cacher',function(){
+	return {
+		restrict : 'C',
+	    templateUrl: function(elem, attr){
+	        return attr.id+'Prev.html';
+	    }
+	}
+});
+
+app.directive('show',function(){
+	return {
+		restrict : 'C',
+	    templateUrl: function(elem, attr){
+	        return attr.id+'.html';
+	    }
+	}
+});
+
+app.controller('mainCtrl', function($scope) {
+    $scope.nom= "Olivon";
+    $scope.prenom= "Adrien";
+    $scope.name="main";
+    $scope.$root.classMain="show";
+    $scope.changeClass=function(){
+		if($scope.classMain=="cacher"){
+        	jQuery(".show").addClass("cacher");
+        	$scope.$root.classCv="cacher";
+        	$scope.$root.classPres="cacher";
+        	$scope.$root.classMain="show";
+        }
+    }
+});
+
+app.controller('cvCtrl', function($scope) {
+    $scope.name= "cv";
+    $scope.$root.classCv="cacher";
+    $scope.changeClass=function(){
+		if($scope.classCv=="cacher"){
+			$scope.$root.classMain="cacher";
+        	$scope.$root.classPres="cacher";
+        	$scope.$root.classCv="show";
+        }
+    }
+});
+
+app.controller('presCtrl', function($scope) {
+    $scope.name= "pres";
+    $scope.$root.classPres="cacher";
+    $scope.changeClass=function(){
+    	if($scope.classPres=="cacher"){
+    		$scope.$root.classMain="cacher";
+    		$scope.$root.classCv="cacher";
+        	$scope.$root.classPres="show";
+        }
+    }
+});
+</script>
+<script type="text/javascript" src="js/main.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</body>
+</html>
