@@ -1,0 +1,14 @@
+<div id="main" class="pf {{classMain}}" ng-controller="mainCtrl" ng-click="changeClass()" >
+<h1 class="hmain anim">{{h1}}</h1>
+<div ng-include="mainUrl"></div>
+</div>
+
+<div id="cv" class="po {{classCv}}" ng-controller="cvCtrl" ng-click="changeClass()">
+	<h1 class="hcv anim">{{h1}}</h1>
+	<div ng-include="cvUrl"></div>
+</div>
+
+<div id="pres" class="po {{classPres}}" ng-controller="presCtrl"  ng-click="changeClass()">
+	<h1 class="hpres anim">{{h1}}</h1>
+	<div ng-include="presUrl"></div>
+</div>
