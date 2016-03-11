@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body ng-app="tonMod">
+
+<input ng-model="var1"/>
+
+<input ng-value="var1 | modif | lowercase"/>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script>
+String.prototype.replaceAll = function(search, replacement) {//ajout de la fonction replaceAll
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+var app = angular.module('tonMod', []);//Le module
+app.filter('modif',function(){//le filtre = fct qui modifie
+	return function(input) {
+	
+		input = input.replaceAll(" " , "-");
+		input = input.replaceAll("'" , "-");
+		return input;
+	}
+});</script>
+</body>
+</html>

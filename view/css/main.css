@@ -16,7 +16,9 @@ html , body{
 #main{
 	background-color : #334D5C;
 	width : 59%;
+	color : #EEE;
 }
+#glyph{color : }
 #cv{
 	background-color : #45B29D;
 	width : 19%;

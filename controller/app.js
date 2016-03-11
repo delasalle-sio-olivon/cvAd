@@ -1,53 +1,16 @@
-var app = angular.module('appMod', ["ngAnimate","ngRoute"]);
-
-app.factory('model',function(){
-	var factory = {
-			
-		main : [],
-		cv : [],
-		pres : [],
-		docs : [],
-		
-		getMain : function(){
-			return factory.main;
-		},
-		getCv : function(){
-			return factory.cv;
-		},
-		getPres : function(){
-			return factory.pres;
-		},
-		getDoc : function(id){
-			return factory.docs[id];
-		}
-	}
-});
-
-app.config(function($routeProvider){
-	$routeProvider
-		.when('/',{templateUrl : './view/home.html'})
-		.when('/:cat',{templateUrl : './view/home.html'})
-		.when('/doc/:docname',{templateUrl : './view/home.html'})
-		.otherwise({redirectTo : '/'})
-	
-});
-
-app.directive('cacher',function(){
-	return {
-		restrict : 'C',
-	    templateUrl: function(elem, attr){
-	        return "./view/"+attr.id+'Prev.html';
-	    }
-	}
-});
-
-app.controller('mainCtrl', function($scope,$routeParams) {
+app.controller('mainCtrl', function($scope,$routeParams,model) {
     $scope.nom= "Olivon";
     $scope.prenom= "Adrien";
     $scope.name="main";
     $scope.h1= $scope.prenom + " " +  $scope.nom;
+    
+    $scope.sections = model.getMain().then(function(data){
+    	$scope.obj = data.main;
+    },function(msg){
+    	console.log(msg);
+    });
 
-	$scope.$root.mainUrl="./view/main.html";
+	$scope.$root.mainUrl="./view/cat.html";
     $scope.$root.classMain="show";
 
     if(typeof $routeParams.docname !=='undefined'){
@@ -66,16 +29,21 @@ app.controller('mainCtrl', function($scope,$routeParams) {
         	$scope.$root.classPres="cacher";
         	$scope.$root.classMain="show";
         	
-        	$scope.$root.mainUrl="./view/main.html";
+        	$scope.$root.mainUrl="./view/cat.html";
         	$scope.$root.cvUrl="./view/cvPrev.html";
         	$scope.$root.presUrl="./view/presPrev.html";
         }
     }
 });
-
-app.controller('cvCtrl', function($scope,$routeParams) {
+app.controller('cvCtrl', function($scope,$routeParams,model) {
     $scope.name= "cv";
     $scope.h1="CV";
+    
+    $scope.sections = model.getCv().then(function(data){
+    	$scope.obj = data.cv;
+    },function(msg){
+    	console.log(msg);
+    });
 
     $scope.$root.classCv="cacher";
     $scope.$root.cvUrl="./view/cvPrev.html";
@@ -94,16 +62,24 @@ app.controller('cvCtrl', function($scope,$routeParams) {
 			$scope.$root.classMain="cacher";
         	$scope.$root.classPres="cacher";
         	$scope.$root.classCv="show";
-        	$scope.$root.cvUrl="./view/cv.html";
+        	$scope.$root.cvUrl="./view/cat.html";
         	$scope.$root.mainUrl="./view/mainPrev.html";
         	$scope.$root.presUrl="./view/presPrev.html";
         }
     }
+    
+    
 });
 
-app.controller('presCtrl', function($scope,$routeParams) {
+app.controller('presCtrl', function($scope,$routeParams,model) {
     $scope.name= "pres";
     $scope.h1="Portfolio";
+    
+    $scope.sections = model.getPres().then(function(data){
+    	$scope.obj = data.pres;
+    },function(msg){
+    	console.log(msg);
+    });
     
     $scope.$root.classPres="cacher";
     $scope.$root.presUrl="./view/presPrev.html";
@@ -117,7 +93,7 @@ app.controller('presCtrl', function($scope,$routeParams) {
 	}
     if(typeof $routeParams.cat !=='undefined'){
 		 $scope.$root.classPres="show";
-		  $scope.$root.presUrl="./view/pres.html";
+		  $scope.$root.presUrl="./view/cat.html";
 	}
 
     $scope.changeClass=function(){
@@ -132,48 +108,7 @@ app.controller('presCtrl', function($scope,$routeParams) {
     }
 
     $scope.retour=function(){
-        	$scope.$root.presUrl="./view/pres.html";
+        	$scope.$root.presUrl="./view/cat.html";
     }
 });
 
-app.animation('.show', [function() {
-	  return {
-	    // make note that other events (like addClass/removeClass)
-	    // have different function input parameters
-	    enter: function(element, doneFn) {
-	      jQuery(element).fadeIn(1000, doneFn);
-
-	      // remember to call doneFn so that angular
-	      // knows that the animation has concluded
-	    },
-
-	    move: function(element, doneFn) {
-	      jQuery(element).fadeIn(1000, doneFn);
-	    },
-
-	    leave: function(element, doneFn) {
-	      jQuery(element).fadeOut(1000, doneFn);
-	    }
-	  }
-	}]);
-
-app.animation('.hmain', [function() {
-	  return {
-	    // make note that other events (like addClass/removeClass)
-	    // have different function input parameters
-	    enter: function(element, doneFn) {
-	      jQuery(element).fadeIn(1000, doneFn);
-
-	      // remember to call doneFn so that angular
-	      // knows that the animation has concluded
-	    },
-
-	    move: function(element, doneFn) {
-	      jQuery(element).fadeIn(1000, doneFn);
-	    },
-
-	    leave: function(element, doneFn) {
-	      jQuery(element).fadeOut(1000, doneFn);
-	    }
-	  }
-	}]);
