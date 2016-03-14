@@ -41,6 +41,9 @@ class DAO
 		$req->execute();
 		$i=-1;
 		$j=-1;
+		$return['main']["id"]=1;
+		$return['cv']["id"]=2;
+		$return['pres']["id"]=3;
 		while ($uneLigne = $req->fetch(PDO::FETCH_OBJ)){
 			if ($i==$uneLigne->catName){
 				if ($j==$uneLigne->sId){
@@ -77,7 +80,73 @@ class DAO
 		}
 		// libère les ressources du jeu de données
 		$req->closeCursor();
+		
+		
+		
 		echo str_replace('\\','',json_encode($return));
+	}
+	
+	public function setData($data)
+	{
+		//var_dump($data);
+		if (isset($data->section)){
+			foreach ($data->section as $section){
+				if(isset($section->li)){
+					
+					if(isset($section->li->new)){
+						echo $section->id;
+						$txt_req = "INSERT INTO li(ic,content,section) VALUES(:ic,:content,:section)";
+						$req = $this->cnx->prepare($txt_req);
+						$req->bindParam(':ic',$section->li->new->ic, PDO::PARAM_STR);
+						$req->bindParam(':content',$section->li->new->content , PDO::PARAM_STR);
+						$req->bindParam(':section', $section->id, PDO::PARAM_STR);
+						$req->execute();
+						$req->closeCursor();
+					}
+					
+					foreach($section->li as $li){
+						$txt_req = "UPDATE li SET ic=:ic,content=:content WHERE id=:id";
+						$req = $this->cnx->prepare($txt_req);
+						$req->bindParam(':content', $li->content, PDO::PARAM_STR);
+						$req->bindParam(':id', $li->id, PDO::PARAM_INT);
+						$req->bindParam(':ic', $li->ic, PDO::PARAM_INT);
+						$req->execute();
+					}
+				}
+				$txt_req = "UPDATE section SET ic=:ic,name=:name WHERE id=:id";
+				$req = $this->cnx->prepare($txt_req);
+				$req->bindParam(':name', $section->name, PDO::PARAM_STR);
+				$req->bindParam(':id', $section->id, PDO::PARAM_INT);
+				$req->bindParam(':ic', $section->ic, PDO::PARAM_INT);
+				$req->execute();
+				
+			}
+			$txt_req = "UPDATE cat SET title=:title WHERE id=:id";
+			$req = $this->cnx->prepare($txt_req);
+			$req->bindParam(':title', $data->title, PDO::PARAM_STR);
+			$req->bindParam(':id', $data->id, PDO::PARAM_INT);
+			$req->execute();
+			$req->closeCursor();
+		}
+		if(isset($data->new->true)){
+			$txt_req = "INSERT INTO section VALUES(:id,:ic,:name,:cat)";
+			$req = $this->cnx->prepare($txt_req);
+			$req->bindParam(':id', $data->new->id, PDO::PARAM_STR);
+			$req->bindParam(':ic', $data->new->ic, PDO::PARAM_STR);
+			$req->bindParam(':name', $data->new->name, PDO::PARAM_STR);
+			$req->bindParam(':cat', $data->id, PDO::PARAM_INT);
+			$req->execute();
+		
+			$txt_req = "INSERT INTO li(ic,content,section) VALUES(:ic,:content,:section)";
+			$req = $this->cnx->prepare($txt_req);
+			$req->bindParam(':ic',$data->new->liIc, PDO::PARAM_STR);
+			$req->bindParam(':content',$data->new->liContent , PDO::PARAM_STR);
+			$req->bindParam(':section', $data->new->id, PDO::PARAM_STR);
+			$req->execute();
+			$req->closeCursor();
+		}
+		
+
 	}
 	
 	

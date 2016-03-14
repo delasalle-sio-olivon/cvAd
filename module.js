@@ -1,7 +1,8 @@
-var app = angular.module('appMod', ["ngAnimate","ngRoute"]);
+var app = angular.module('appMod', ["ngAnimate","ngRoute",'ngSanitize']);
 app.config(function($routeProvider){
 	$routeProvider
 		.when('/',{templateUrl : './view/home.html'})
+		.when('/admin',{templateUrl : './view/admin.html'})
 		.when('/:cat',{templateUrl : './view/home.html'})
 		.when('/doc/:docname',{templateUrl : './view/home.html'})
 		.otherwise({redirectTo : '/'})

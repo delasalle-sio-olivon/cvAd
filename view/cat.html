@@ -5,9 +5,9 @@
 				{{section.name}}
 			</h2>
 			<ul>
-				<li ng-repeat="li in section.li">
-					<!-- modifier le if en hasIc --><span ng-if="li.ic.length>0" class="glyphicon glyphicon-{{li.ic}}" id="glyph"aria-hidden="true"></span>
-					{{li.content}}
+				<li  ng-repeat="li in section.li">
+					<!-- modifier le if en hasIc --><span ng-if="li.ic.length>0" class=" float glyphicon glyphicon-{{li.ic}}" id="glyph"aria-hidden="true"></span>
+					<p ng-bind-html="li.content"></p>
 				</li>
 			</ul>
 		</div>

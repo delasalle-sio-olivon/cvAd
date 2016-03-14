@@ -1,24 +1,26 @@
+$url="./view/cat.html";
+$urlPrev="./view/catPrev.html";
+
 app.controller('mainCtrl', function($scope,$routeParams,model) {
-    $scope.nom= "Olivon";
-    $scope.prenom= "Adrien";
-    $scope.name="main";
-    $scope.h1= $scope.prenom + " " +  $scope.nom;
-    
+	$scope.$root.updateC=function(cat){
+    	console.log("s");
+		model.update(cat);
+    }
+	
     $scope.sections = model.getMain().then(function(data){
     	$scope.obj = data.main;
     },function(msg){
     	console.log(msg);
     });
 
-	$scope.$root.mainUrl="./view/cat.html";
     $scope.$root.classMain="show";
 
     if(typeof $routeParams.docname !=='undefined'){
-       	$scope.$root.mainUrl="./view/mainPrev.html";
+       	$scope.$root.mainUrl=$urlPrev;
        	$scope.$root.classMain="cacher";
     }
     if(typeof $routeParams.cat !=='undefined'){
-       	$scope.$root.mainUrl="./view/mainPrev.html";
+       	$scope.$root.mainUrl=$urlPrev
        	$scope.$root.classMain="cacher";
     }
     	
@@ -29,16 +31,13 @@ app.controller('mainCtrl', function($scope,$routeParams,model) {
         	$scope.$root.classPres="cacher";
         	$scope.$root.classMain="show";
         	
-        	$scope.$root.mainUrl="./view/cat.html";
-        	$scope.$root.cvUrl="./view/cvPrev.html";
-        	$scope.$root.presUrl="./view/presPrev.html";
+        	$scope.$root.mainUrl=$url
+        	$scope.$root.cvUrl=$urlPrev
+        	$scope.$root.presUrl=$urlPrev
         }
     }
 });
 app.controller('cvCtrl', function($scope,$routeParams,model) {
-    $scope.name= "cv";
-    $scope.h1="CV";
-    
     $scope.sections = model.getCv().then(function(data){
     	$scope.obj = data.cv;
     },function(msg){
@@ -46,15 +45,15 @@ app.controller('cvCtrl', function($scope,$routeParams,model) {
     });
 
     $scope.$root.classCv="cacher";
-    $scope.$root.cvUrl="./view/cvPrev.html";
+    $scope.$root.cvUrl=$urlPrev
 	
     if(typeof $routeParams.docname !=='undefined'){
     	$scope.$root.classCv="cacher";
-    	$scope.$root.cvUrl="./view/cvPrev.html";
+    	$scope.$root.cvUrl=$urlPrev
 	}
     if(typeof $routeParams.cat !=='undefined'){
     	$scope.$root.classCv="cacher";
-    	$scope.$root.cvUrl="./view/cvPrev.html";
+    	$scope.$root.cvUrl=$urlPrev
 	}
 
     $scope.changeClass=function(){
@@ -62,19 +61,16 @@ app.controller('cvCtrl', function($scope,$routeParams,model) {
 			$scope.$root.classMain="cacher";
         	$scope.$root.classPres="cacher";
         	$scope.$root.classCv="show";
-        	$scope.$root.cvUrl="./view/cat.html";
-        	$scope.$root.mainUrl="./view/mainPrev.html";
-        	$scope.$root.presUrl="./view/presPrev.html";
+        	$scope.$root.cvUrl=$url
+        	$scope.$root.mainUrl=$urlPrev
+        	$scope.$root.presUrl=$urlPrev
         }
     }
     
     
 });
 
-app.controller('presCtrl', function($scope,$routeParams,model) {
-    $scope.name= "pres";
-    $scope.h1="Portfolio";
-    
+app.controller('presCtrl', function($scope,$routeParams,model) {    
     $scope.sections = model.getPres().then(function(data){
     	$scope.obj = data.pres;
     },function(msg){
@@ -82,9 +78,9 @@ app.controller('presCtrl', function($scope,$routeParams,model) {
     });
     
     $scope.$root.classPres="cacher";
-    $scope.$root.presUrl="./view/presPrev.html";
+    $scope.$root.presUrl=$urlPrev;
 
-    $scope.urlVar="./view/pres.html";
+    $scope.urlVar=$url;
     if(typeof $routeParams.docname !=='undefined'){
 		 $scope.$root.classPres="show";
 		 $scope.name=$routeParams.docname;
@@ -93,7 +89,7 @@ app.controller('presCtrl', function($scope,$routeParams,model) {
 	}
     if(typeof $routeParams.cat !=='undefined'){
 		 $scope.$root.classPres="show";
-		  $scope.$root.presUrl="./view/cat.html";
+		  $scope.$root.presUrl=$url
 	}
 
     $scope.changeClass=function(){
@@ -102,13 +98,13 @@ app.controller('presCtrl', function($scope,$routeParams,model) {
     		$scope.$root.classCv="cacher";
         	$scope.$root.classPres="show";
         	$scope.$root.presUrl=$scope.urlVar;
-        	$scope.$root.mainUrl="./view/mainPrev.html";
-        	$scope.$root.cvUrl="./view/cvPrev.html";
+        	$scope.$root.mainUrl=$urlPrev
+        	$scope.$root.cvUrl=$urlPrev
         }
     }
 
     $scope.retour=function(){
-        	$scope.$root.presUrl="./view/cat.html";
+        	$scope.$root.presUrl=$url
     }
 });
 

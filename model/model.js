@@ -47,6 +47,12 @@ app.factory('model',function($http, $q){
 				return factory.fData.pres;
 			}
 		},
+		update : function(obj){
+			$http.post('./controller/controller.php',obj).success(function(data, status) {
+				console.log("t");
+	            console.log(data);
+	        }).err;
+		},
 		getDoc : function(id){
 			return factory.docs[id];
 		}

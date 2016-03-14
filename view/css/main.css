@@ -67,6 +67,10 @@ li{margin-bottom : 15px;}
 	animation : show 1s;
 }
 
+.float{
+	float:left;
+}
+
 @keyframes show {
     0%   { opacity : 0;}
     20%	 {opacity : 0;}
@@ -114,4 +118,7 @@ li{margin-bottom : 15px;}
 .msg{
 	width : 500px;
 	margin-bottom : 20px;
+}
+input,textarea{
+	color : black;
 }
