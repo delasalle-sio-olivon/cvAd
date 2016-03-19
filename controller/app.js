@@ -12,7 +12,7 @@ app.controller('mainCtrl', function($scope,$routeParams,model) {
     },function(msg){
     	console.log(msg);
     });
-
+    $scope.$root.mainUrl=$url
     $scope.$root.classMain="show";
 
     if(typeof $routeParams.docname !=='undefined'){

@@ -1,0 +1,14 @@
+<div id="main" class="pf {{classMain}}" ng-controller="mainCtrl" ng-click="changeClass()" >
+<h1 class="hmain anim"><input ng-model="obj.title"></h1>
+<div ng-include="'view/admincat.html'"></div>
+</div>
+
+<div id="cv" class="po {{classCv}}" ng-controller="cvCtrl" ng-click="changeClass()">
+	<h1 class="hcv anim"><input ng-model="obj.title"></h1>
+	<div ng-include="'view/admincat.html'"></div>
+</div>
+
+<div id="pres" class="po {{classPres}}" ng-controller="presCtrl"  ng-click="changeClass()">
+	<h1 class="hpres anim"><input ng-model="obj.title"></h1>
+	<div ng-include="'view/admincat.html'"></div>
+</div>

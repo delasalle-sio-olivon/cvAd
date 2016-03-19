@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../model/DAO.class.php';
 $dao= new DAO();
 $postdata = file_get_contents("php://input");

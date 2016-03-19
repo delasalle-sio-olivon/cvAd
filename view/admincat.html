@@ -1,0 +1,30 @@
+<form ng-submit="updateC(obj)" ><div class="container anim">
+		<div ng-repeat="section in obj.section" id="{{section.id}}">
+			
+				<span>Section Ic : <input ng-model="section.ic"/></span><br/>
+				<span>Section Name : <input ng-model="section.name"/></span><br/>
+			
+			<ul>
+				<li ng-repeat="li in section.li">
+					<span>Li Icon : <input  ng-model="li.ic"/></span><br/>
+					Li Content : <textarea ng-model="li.content"></textarea></span><br/>
+				</li>
+				<li>
+				Nouvelle : 
+				<span>Li Icon : <input  ng-model="section.li.new.ic"/></span><br/>
+					Li Content : <textarea ng-model="section.li.new.content"></textarea></span><br/>
+				</li>
+			</ul>
+		</div>
+		Nouvelle : <br/>
+		<input type="checkbox" ng-model="obj.new.true"/><br/>
+		<span>Section id : <input ng-model="obj.new.id"/></span><br/>
+		<span>Section Ic : <input ng-model="obj.new.ic"/></span><br/>
+		<span>Section Name : <input ng-model="obj.new.name"/></span><br/><br/>
+		
+		<span>Li Icon : <input  ng-model="obj.new.liIc"/></span><br/>
+			Li Content : <textarea ng-model="obj.new.liContent"></textarea></span><br/>
+				
+		<input type="submit">
+	</div>
+</form>
