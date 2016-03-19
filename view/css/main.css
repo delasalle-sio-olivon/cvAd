@@ -84,13 +84,14 @@ li{margin-bottom : 15px;}
 	font-size : 100px;
 	text-align : center;
 	line-height : 160%
-
+	
 }
 .big-ic span{
 	width : 100%;
 	font-size : 100px;
 	text-align : center;
 	line-height: 135%;
+	color : #333;
 }
 
 ::-webkit-scrollbar {									/* Scrollbars */
