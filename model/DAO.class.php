@@ -24,6 +24,7 @@ class DAO
 		}
 		catch (Exception $ex)
 		{	
+			echo $ex;
 		}
 	}
 	
