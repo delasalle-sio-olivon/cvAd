@@ -2,7 +2,7 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
+-- Client :  127.0.0.1 OUI
 -- Généré le :  Ven 11 Mars 2016 à 16:54
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
