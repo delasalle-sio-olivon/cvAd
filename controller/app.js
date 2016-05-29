@@ -84,7 +84,7 @@ app.controller('presCtrl', function($scope,$routeParams,model) {
     if(typeof $routeParams.docname !=='undefined'){
 		 $scope.$root.classPres="show";
 		 $scope.name=$routeParams.docname;
-		 $scope.$root.presUrl="./view/doc.html";
+		 $scope.$root.presUrl="./view/"+ $scope.name+".html";
 		 $scope.urlVar=$scope.$root.presUrl;
 	}
     if(typeof $routeParams.cat !=='undefined'){
